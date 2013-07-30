@@ -1,11 +1,13 @@
 requirejs.config({
     paths: {
-        'jquery': 'components/jquery/jquery',
-        'underscore': 'components/underscore/underscore',
-        'text': 'components/requirejs-text/text',
-        'mustache': 'components/mustache/mustache',
-        'rivets': 'components/rivets/dist/rivets',
-        'base': 'modules/base'
+        'jquery': 'bower_components/jquery/jquery',
+        'underscore': 'bower_components/underscore/underscore',
+        'backbone': 'bower_components/backbone/backbone',
+        'text': 'bower_components/requirejs-text/text',
+        'mustache': 'bower_components/mustache/mustache',
+        'rivets': 'bower_components/rivets/dist/rivets',
+        'base': 'modules/base',
+        'components': 'bower_components'
     },
     shim: {
         'jquery': {
@@ -17,7 +19,7 @@ requirejs.config({
     },
     map: {
         '*': {
-            'css': 'components/require-css/css'
+            'css': 'bower_components/require-css/css'
         }
     }
 })
