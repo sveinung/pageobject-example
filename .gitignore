@@ -1,0 +1,9 @@
+.gradle
+.idea
+*.iml
+build/
+.DS_Store
+.vagrant
+*.swp
+node_modules/
+src/main/webapp/components/

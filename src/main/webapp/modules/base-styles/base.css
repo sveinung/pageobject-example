@@ -1,0 +1,20 @@
+html {
+    font-family: 'Avenir Next W10 Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #eee;
+}
+
+ul { padding: 0; }
+
+li { list-style-type: none; }
+li:hover { background-color: #4af; }
+
+h3 { padding: 0 0.5em;}
+li { padding: 0.5em; }
+
+.box {
+    padding: 0.5em;
+    margin: 0.5em 0.5em 0 0;
+    background-color: #fff;
+}
+
+.hide { display: none; }
