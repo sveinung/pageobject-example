@@ -15,6 +15,10 @@ requirejs.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'backbone': {
+            exports: 'Backbone',
+            deps: ['jquery', 'underscore']
         }
     },
     map: {

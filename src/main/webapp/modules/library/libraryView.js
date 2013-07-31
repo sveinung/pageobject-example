@@ -22,7 +22,7 @@ define(function(require) {
             event.preventDefault();
 
             el.find('.book-input-form').removeClass('hide');
-            var addBookView = AddBookView({
+            var addBookView = new AddBookView({
                 el: el.find('.book-input-form')
             });
             addBookView.render();
