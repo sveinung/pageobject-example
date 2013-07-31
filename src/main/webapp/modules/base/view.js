@@ -4,8 +4,8 @@ define(function(require) {
         renderTemplate = require('./renderTemplate');
 
     var BaseView = Backbone.View.extend({
-        renderTemplate: function(template) {
-            this.$el.html(renderTemplate(template));
+        renderTemplate: function(template, data) {
+            this.$el.html(renderTemplate(template, data));
         }
     });
 

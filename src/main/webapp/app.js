@@ -36,7 +36,7 @@ define(function(require) {
         rivets = require('rivets');
 
     var LibraryView = require('modules/library/libraryView');
-    var LibraryRepository = require('modules/library/libraryRepository');
+    var Library = require('modules/library/library');
 
     $(function() {
         rivets.configure({
@@ -52,11 +52,15 @@ define(function(require) {
             }
         });
 
-        var libraryView = LibraryView({
-            el: $(".library"),
-            libraryId: 1,
-            libraryRepository: LibraryRepository()
+        var library = new Library();
+
+        var libraryView = new LibraryView({
+            library: library
         });
-        libraryView.render();
+
+        library.fetch().done(function() {
+            libraryView.setElement($(".library"));
+            libraryView.render();
+        });
     });
 });
