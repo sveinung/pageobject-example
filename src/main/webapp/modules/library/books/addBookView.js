@@ -2,16 +2,15 @@ define(function(require) {
 
     require('css!./addBookView.css');
     var template = require('text!./addBookView.mustache'),
-        renderTemplate = require('base/renderTemplate'),
-        Backbone = require('backbone');
+        BaseView = require('base/view');
 
-    var AddBookView = Backbone.View.extend({
+    var AddBookView = BaseView.extend({
         events: {
             'click .cancel-button': 'cancelButtonClicked',
             'click .submit-button': 'submitButtonClicked'
         },
         render: function() {
-            this.$el.html(renderTemplate(template));
+            this.renderTemplate(template);
 
             return this;
         },
