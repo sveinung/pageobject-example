@@ -14,7 +14,6 @@ requirejs.config({
         'underscore': 'bower_components/underscore/underscore',
         'text': 'bower_components/requirejs-text/text',
         'mustache': 'bower_components/mustache/mustache',
-        'rivets': 'bower_components/rivets/dist/rivets',
         'backbone': 'bower_components/backbone/backbone',
         'base': 'modules/base',
 
@@ -45,18 +44,5 @@ requirejs.config({
     },
     deps: deps,
     callback: window.__karma__.start
-});
-
-require(['rivets'], function(rivets) {
-    rivets.configure({
-        adapter: {
-            preloadData: false,
-            subscribe: function(obj, keypath, callback) {
-            },
-            read: function(obj, keypath) {
-                return obj;
-            }
-        }
-    });
 });
 

@@ -5,7 +5,6 @@ requirejs.config({
         'backbone': 'bower_components/backbone/backbone',
         'text': 'bower_components/requirejs-text/text',
         'mustache': 'bower_components/mustache/mustache',
-        'rivets': 'bower_components/rivets/dist/rivets',
         'base': 'modules/base',
         'components': 'bower_components'
     },
@@ -32,26 +31,12 @@ define(function(require) {
 
     require('modules/base-styles/base-styles');
 
-    var $ = require('jquery'),
-        rivets = require('rivets');
+    var $ = require('jquery');
 
     var LibraryView = require('modules/library/libraryView');
     var Library = require('modules/library/library');
 
     $(function() {
-        rivets.configure({
-            adapter: {
-                preloadData: false,
-                subscribe: function(obj, keypath, callback) {
-                    console.log("subscribe: ", obj, keypath, callback);
-                },
-                read: function(obj, keypath) {
-                    console.log("read: ", obj, keypath);
-                    return obj;
-                }
-            }
-        });
-
         var library = new Library();
 
         var libraryView = new LibraryView({
