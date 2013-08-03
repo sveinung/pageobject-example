@@ -16,4 +16,8 @@ public class BookRepository {
                 return new Book();
         }
     }
+
+    public Book saveBook(Book book) {
+        return book;
+    }
 }

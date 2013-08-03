@@ -5,6 +5,9 @@ public class BookDTO {
     private String author;
     private String title;
 
+    @SuppressWarnings("unused")
+    public BookDTO() {}
+
     public BookDTO(Book book) {
         author = book.getAuthor();
         title = book.getTitle();
@@ -24,5 +27,9 @@ public class BookDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Book transfer() {
+        return new Book(this.author, this.title);
     }
 }
