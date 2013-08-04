@@ -12,6 +12,8 @@ define(function(require) {
 
         initialize: function(options) {
             this.library = options.library;
+
+            this.addBookView = new AddBookView();
         },
 
         render: function() {
@@ -25,10 +27,9 @@ define(function(require) {
             event.preventDefault();
 
             this.$('.add-book-view').removeClass('hide');
-            var addBookView = new AddBookView({
-                el: this.$('.add-book-view')
-            });
-            addBookView.render();
+            this.addBookView.setElement(this.$('.add-book-view'));
+
+            this.addBookView.render();
         }
     });
 
