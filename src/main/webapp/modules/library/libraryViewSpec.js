@@ -40,8 +40,8 @@ define(function(require) {
 
             libraryView.$(".add-book").click();
 
-            expect(libraryView.$(".book-input-form")).toBe("form");
-            expect(libraryView.$(".book-input-form")).not.toHaveClass("hide");
+            expect(libraryView.$(".add-book-view")).toBe("form");
+            expect(libraryView.$(".add-book-view")).not.toHaveClass("hide");
         });
     });
 });
