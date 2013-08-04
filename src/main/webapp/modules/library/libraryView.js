@@ -24,9 +24,9 @@ define(function(require) {
         addBookClicked: function(event) {
             event.preventDefault();
 
-            this.$('.book-input-form').removeClass('hide');
+            this.$('.add-book-view').removeClass('hide');
             var addBookView = new AddBookView({
-                el: this.$('.book-input-form')
+                el: this.$('.add-book-view')
             });
             addBookView.render();
         }
