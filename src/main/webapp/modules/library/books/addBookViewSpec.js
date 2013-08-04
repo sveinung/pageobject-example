@@ -28,6 +28,10 @@ define(function(require) {
                 .val("Miguel de Cervantes Saavedra")
                 .change();
 
+            view.$(".title-input")
+                .val("Don Quixote")
+                .change();
+
             responseFaker.fakeResponse(view.book.toJSON(), {}, function() {
                 view.$(".submit-button").click();
             });
@@ -35,6 +39,7 @@ define(function(require) {
             expect(callback).toHaveBeenCalledWith(sinon.match({
                 attributes: {
                     author: "Miguel de Cervantes Saavedra",
+                    title: "Don Quixote"
                 }
             }));
         });
