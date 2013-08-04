@@ -8,6 +8,8 @@ define(function(require) {
 
     var AddBookView = BaseView.extend({
         events: {
+            'change .title-input': 'titleChanged',
+            'change .author-input': 'authorChanged',
             'click .cancel-button': 'cancelButtonClicked',
             'click .submit-button': 'submitButtonClicked'
         },
@@ -20,6 +22,16 @@ define(function(require) {
             this.renderTemplate(template);
 
             return this;
+        },
+
+        titleChanged: function(event) {
+            var title = this.$(event.currentTarget).val();
+            this.book.set('title', title);
+        },
+
+        authorChanged: function(event) {
+            var author = this.$(event.currentTarget).val();
+            this.book.set('author', author);
         },
 
         cancelButtonClicked: function(event) {
