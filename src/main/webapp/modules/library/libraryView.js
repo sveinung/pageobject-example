@@ -26,10 +26,9 @@ define(function(require) {
         addBookClicked: function(event) {
             event.preventDefault();
 
-            this.$('.add-book-view').removeClass('hide');
             this.addBookView.setElement(this.$('.add-book-view'));
-
             this.addBookView.render();
+            this.addBookView.show();
         }
     });
 

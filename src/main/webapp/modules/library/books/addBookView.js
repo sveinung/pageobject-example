@@ -45,6 +45,10 @@ define(function(require) {
             this.hide();
         },
 
+        show: function() {
+            this.$el.removeClass('hide');
+        },
+
         hide: function() {
             this.$el.addClass('hide');
         }
