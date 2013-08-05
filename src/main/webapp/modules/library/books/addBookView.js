@@ -3,6 +3,7 @@ define(function(require) {
     require('css!./addBookView.css');
     var template = require('text!./addBookView.mustache'),
         BaseView = require('base/view'),
+        DropDownView = require('modules/components/dropdown/dropDownView'),
 
         Book = require('./book');
 
@@ -17,10 +18,16 @@ define(function(require) {
         initialize: function(options) {
             this.genres = options.genres;
             this.book = new Book();
+            this.genresDropDown = new DropDownView({
+                defaultOption: "Choose a genre"
+            });
         },
 
         render: function() {
             this.renderTemplate(template);
+
+            this.genresDropDown.setElement(this.$(".genres-dropdown"));
+            this.genresDropDown.render();
 
             return this;
         },
