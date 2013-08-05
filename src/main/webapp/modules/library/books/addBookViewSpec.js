@@ -3,11 +3,18 @@ define(function(require) {
 
         responseFaker = require('responseFaker'),
 
-        AddBookView = require('modules/library/books/addBookView');
+        AddBookView = require('modules/library/books/addBookView'),
+        Genres = require('modules/library/books/genres');
 
     describe('AddBookView', function() {
         it('hides the view when cancelling', function() {
-            var view = new AddBookView();
+            var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
+            var genres = new Genres();
+            responseFaker.fakeResponse(genresResponse, {}, function() {
+                genres.fetch();
+            });
+
+            var view = new AddBookView(genres);
             view.render();
 
             expect(view.$el).not.toHaveClass('hide');
@@ -18,7 +25,13 @@ define(function(require) {
         });
 
         it('saves the book', function() {
-            var view = new AddBookView();
+            var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
+            var genres = new Genres();
+            responseFaker.fakeResponse(genresResponse, {}, function() {
+                genres.fetch();
+            });
+
+            var view = new AddBookView(genres);
             view.render();
 
             var callback = sinon.spy();

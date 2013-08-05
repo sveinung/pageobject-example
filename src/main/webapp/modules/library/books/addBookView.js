@@ -15,6 +15,7 @@ define(function(require) {
         },
 
         initialize: function(options) {
+            this.genres = options.genres;
             this.book = new Book();
         },
 

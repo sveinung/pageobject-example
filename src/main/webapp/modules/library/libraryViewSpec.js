@@ -38,7 +38,10 @@ define(function(require) {
 
             libraryView.render();
 
-            libraryView.$(".add-book").click();
+            var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
+            responseFaker.fakeResponse(genresResponse, {}, function() {
+                libraryView.$(".add-book").click();
+            });
 
             expect(libraryView.$(".add-book-view")).toBe("form");
             expect(libraryView.$(".add-book-view")).not.toHaveClass("hide");

@@ -3,6 +3,8 @@ package nobs;
 import nobs.book.BookRepository;
 import nobs.book.BookResource;
 import nobs.book.BookURIBuilder;
+import nobs.genre.GenreRepository;
+import nobs.genre.GenreResource;
 import nobs.library.LibraryRepository;
 import nobs.library.LibraryResource;
 
@@ -21,6 +23,8 @@ public class MyApplication extends Application {
                                           new BookURIBuilder()));
 
         resources.add(new BookResource(new BookRepository()));
+
+        resources.add(new GenreResource(new GenreRepository()));
 
         return resources;
     }
