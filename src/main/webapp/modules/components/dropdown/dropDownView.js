@@ -9,6 +9,7 @@ define(function(require) {
     var DropDownView = BaseView.extend({
         events: {
             "click .dropdown-trigger": "triggerClicked",
+            "click .option a": "optionClicked"
         },
 
         initialize: function(options) {
@@ -34,6 +35,15 @@ define(function(require) {
         triggerClicked: function(event) {
             event.preventDefault();
             this.$(".dropdown-menu").toggleClass("hide");
+        },
+
+        optionClicked: function(event) {
+            event.preventDefault();
+            this.$(".dropdown-menu").addClass("hide");
+
+            var option = this.$(event.currentTarget).attr("data-value");
+            this.$(".dropdown-trigger span").text(option);
+            this.trigger("selected", option);
         }
     });
 

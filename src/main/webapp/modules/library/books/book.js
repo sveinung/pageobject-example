@@ -7,7 +7,8 @@ define(function(require) {
 
         defaults: {
             title: null,
-            author: null
+            author: null,
+            genre: null
         }
     });
 

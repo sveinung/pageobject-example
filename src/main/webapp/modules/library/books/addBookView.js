@@ -21,6 +21,7 @@ define(function(require) {
             this.genresDropDown = new DropDownView({
                 defaultOption: "Choose a genre"
             });
+            this.listenTo(this.genresDropDown, "selected", this.genreSelected);
         },
 
         render: function() {
@@ -42,6 +43,10 @@ define(function(require) {
         authorChanged: function(event) {
             var author = this.$(event.currentTarget).val();
             this.book.set('author', author);
+        },
+
+        genreSelected: function(genre) {
+            this.book.set('genre', genre);
         },
 
         cancelButtonClicked: function(event) {
