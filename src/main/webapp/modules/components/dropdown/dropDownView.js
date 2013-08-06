@@ -42,7 +42,7 @@ define(function(require) {
             this.$(".dropdown-menu").addClass("hide");
 
             var option = this.$(event.currentTarget).attr("data-value");
-            this.$(".dropdown-trigger span").text(option);
+            this.$(".dropdown-trigger .chosen-value").text(option);
             this.trigger("selected", option);
         }
     });
