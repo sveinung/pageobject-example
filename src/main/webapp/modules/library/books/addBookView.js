@@ -27,7 +27,9 @@ define(function(require) {
             this.renderTemplate(template);
 
             this.genresDropDown.setElement(this.$(".genres-dropdown"));
-            this.genresDropDown.render();
+            this.genresDropDown.renderWith({
+                options: this.genres.toOptions()
+            });
 
             return this;
         },

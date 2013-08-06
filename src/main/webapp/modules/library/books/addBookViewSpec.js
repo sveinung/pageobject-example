@@ -14,7 +14,9 @@ define(function(require) {
                 genres.fetch();
             });
 
-            var view = new AddBookView(genres);
+            var view = new AddBookView({
+                genres: genres
+            });
             view.render();
 
             expect(view.$el).not.toHaveClass('hide');
@@ -31,7 +33,9 @@ define(function(require) {
                 genres.fetch();
             });
 
-            var view = new AddBookView(genres);
+            var view = new AddBookView({
+                genres: genres
+            });
             view.render();
 
             var callback = sinon.spy();

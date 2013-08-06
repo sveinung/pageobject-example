@@ -7,10 +7,14 @@
 }
 
 .dropdown a {
-    width: 100%;
-    margin: auto 0;
     text-decoration: none;
     color: #000;
+}
+.dropdown .option:hover { background-color: #ccc; }
+
+.dropdown .dropdown-trigger {
+    width: 100%;
+    margin: auto 0;
     position: absolute;
     left: 0.3em;
     top: 25%;
@@ -20,3 +24,12 @@
     position: absolute;
     right: 4%;
 }
+
+.dropdown .dropdown-menu {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    background-color: #aaa;
+    top: 80%;
+}
+
