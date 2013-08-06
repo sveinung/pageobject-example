@@ -1,0 +1,22 @@
+.dropdown {
+    width: 100%;
+    height: 2.5em;
+    background-color: #aaa;
+    margin-bottom: 0.5em;
+    position: relative;
+}
+
+.dropdown a {
+    width: 100%;
+    margin: auto 0;
+    text-decoration: none;
+    color: #000;
+    position: absolute;
+    left: 0.3em;
+    top: 25%;
+}
+
+.dropdown .icon {
+    position: absolute;
+    right: 4%;
+}
