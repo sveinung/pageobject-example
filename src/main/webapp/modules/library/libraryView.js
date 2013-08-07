@@ -20,6 +20,8 @@ define(function(require) {
             this.addBookView = new AddBookView({
                 genres: this.genres
             });
+            this.listenTo(this.addBookView, "book:added", this.bookAdded);
+            this.listenTo(this.library, "add", this.render);
         },
 
         render: function() {
@@ -40,6 +42,10 @@ define(function(require) {
         genresReceived: function() {
             this.addBookView.render();
             this.addBookView.show();
+        },
+
+        bookAdded: function(book) {
+            this.library.add(book);
         }
     });
 

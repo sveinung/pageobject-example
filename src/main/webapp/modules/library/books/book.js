@@ -6,6 +6,7 @@ define(function(require) {
         urlRoot: 'http://localhost:8080/rest/book',
 
         defaults: {
+            id: undefined,
             title: null,
             author: null,
             genre: null

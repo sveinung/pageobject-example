@@ -58,6 +58,7 @@ define(function(require) {
             event.preventDefault();
             this.book.save();
             this.hide();
+            this.trigger("book:added", this.book);
         },
 
         show: function() {
