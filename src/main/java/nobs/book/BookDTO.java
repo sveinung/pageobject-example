@@ -2,6 +2,7 @@ package nobs.book;
 
 public class BookDTO {
 
+    private int id;
     private String author;
     private String title;
     private String genre;
@@ -10,9 +11,18 @@ public class BookDTO {
     public BookDTO() {}
 
     public BookDTO(Book book) {
+        id = book.getId().getValue();
         author = book.getAuthor();
         title = book.getTitle();
         genre = book.getGenre();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAuthor() {
@@ -40,6 +50,6 @@ public class BookDTO {
     }
 
     public Book transfer() {
-        return new Book(this.author, this.title, this.genre);
+        return new Book(new BookID(this.id), this.author, this.title, this.genre);
     }
 }
