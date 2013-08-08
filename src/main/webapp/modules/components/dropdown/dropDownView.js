@@ -14,6 +14,7 @@ define(function(require) {
 
         initialize: function(options) {
             this.defaultOption = options.defaultOption;
+            this.options = (options.options || {});
         },
 
         renderWith: function(options) {
