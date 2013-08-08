@@ -49,6 +49,10 @@ define(function(require) {
                 .val("Don Quixote")
                 .change();
 
+            var dropdown = view.$(".genres-dropdown");
+            dropdown.find(".dropdown-trigger").click();
+            dropdown.find("a[data-value='Picaresco']").click();
+
             responseFaker.fakeResponse(view.book.toJSON(), {}, function() {
                 view.$(".submit-button").click();
             });
@@ -56,7 +60,8 @@ define(function(require) {
             expect(callback).toHaveBeenCalledWith(sinon.match({
                 attributes: {
                     author: "Miguel de Cervantes Saavedra",
-                    title: "Don Quixote"
+                    title: "Don Quixote",
+                    genre: "Picaresco"
                 }
             }));
         });
