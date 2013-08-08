@@ -9,8 +9,7 @@ define(function(require) {
             return this.map(function(genreModel) {
                 var genre = genreModel.toJSON();
                 return {
-                    value: genre.name,
-                    text: genre.name
+                    value: genre.name
                 };
             });
         }
