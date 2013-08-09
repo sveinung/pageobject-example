@@ -1,6 +1,7 @@
 define(function(require) {
 
     var DropDownView = require('modules/components/dropdown/dropDownView');
+    var DropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
 
     describe('DropDownView', function() {
         it('opens the dropdown', function() {
@@ -13,12 +14,12 @@ define(function(require) {
                 }]
             });
             view.render();
+            var pageObject = new DropDownViewPageObject(view);
 
-            expect(view.$(".dropdown-menu")).toHaveClass("hide");
-
-            view.$(".dropdown-trigger").click();
-
-            expect(view.$(".dropdown-menu")).not.toHaveClass("hide");
+            pageObject.
+                expectToBeHidden().
+                openMenu().
+                expectToBeVisible();
         });
 
         it('chooses an option', function() {
