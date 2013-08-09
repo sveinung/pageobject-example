@@ -32,13 +32,13 @@ define(function(require) {
                 }]
             });
             view.render();
+            var pageObject = new DropDownViewPageObject(view);
 
-            expect(view.$(".dropdown-trigger .chosen-value")).toHaveText("Choose!");
-
-            view.$(".dropdown-trigger").click();
-            view.$(".dropdown-menu a[data-value='Satire']").click();
-
-            expect(view.$(".dropdown-trigger .chosen-value")).toHaveText("Satire");
+            pageObject.
+                expectToHaveChosen("Choose!").
+                openMenu().
+                chooseOption("Satire").
+                expectToHaveChosen("Satire");
         });
     });
 });
