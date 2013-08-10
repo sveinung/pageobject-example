@@ -14,7 +14,7 @@ define(function(require) {
                 }]
             });
             view.render();
-            var pageObject = new DropDownViewPageObject(view);
+            var pageObject = new DropDownViewPageObject(view.$el);
 
             pageObject.
                 expectToBeHidden().
@@ -32,7 +32,7 @@ define(function(require) {
                 }]
             });
             view.render();
-            var pageObject = new DropDownViewPageObject(view);
+            var pageObject = new DropDownViewPageObject(view.$el);
 
             pageObject.
                 expectToHaveChosen("Choose!").
