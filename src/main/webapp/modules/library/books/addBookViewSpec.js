@@ -6,6 +6,8 @@ define(function(require) {
     var AddBookView = require('modules/library/books/addBookView');
     var Genres = require('modules/library/books/genres');
 
+    var AddBookViewPageObject = require('modules/library/books/addBookViewPageObject');
+
     describe('AddBookView', function() {
         it('hides the view when cancelling', function() {
             var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
@@ -38,20 +40,15 @@ define(function(require) {
             });
             view.render();
 
+            var pageObject = new AddBookViewPageObject(view.$el);
+
             var callback = sinon.spy();
             view.book.on('sync', callback);
 
-            view.$(".author-input").
-                val("Miguel de Cervantes Saavedra").
-                change();
-
-            view.$(".title-input").
-                val("Don Quixote").
-                change();
-
-            var dropdown = view.$(".genres-dropdown");
-            dropdown.find(".dropdown-trigger").click();
-            dropdown.find("a[data-value='Picaresco']").click();
+            pageObject.
+                author("Miguel de Cervantes Saavedra").
+                title("Don Quixote").
+                genre("Picaresco");
 
             responseFaker.fakeResponse(view.book.toJSON(), {}, function() {
                 view.$(".submit-button").click();
