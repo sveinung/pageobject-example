@@ -1,10 +1,10 @@
 define(function(require) {
-    var sinon = require('sinon'),
+    var sinon = require('sinon');
 
-        responseFaker = require('responseFaker'),
+    var responseFaker = require('responseFaker');
 
-        AddBookView = require('modules/library/books/addBookView'),
-        Genres = require('modules/library/books/genres');
+    var AddBookView = require('modules/library/books/addBookView');
+    var Genres = require('modules/library/books/genres');
 
     describe('AddBookView', function() {
         it('hides the view when cancelling', function() {
@@ -41,13 +41,13 @@ define(function(require) {
             var callback = sinon.spy();
             view.book.on('sync', callback);
 
-            view.$(".author-input")
-                .val("Miguel de Cervantes Saavedra")
-                .change();
+            view.$(".author-input").
+                val("Miguel de Cervantes Saavedra").
+                change();
 
-            view.$(".title-input")
-                .val("Don Quixote")
-                .change();
+            view.$(".title-input").
+                val("Don Quixote").
+                change();
 
             var dropdown = view.$(".genres-dropdown");
             dropdown.find(".dropdown-trigger").click();
