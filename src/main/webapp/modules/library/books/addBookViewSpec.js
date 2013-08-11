@@ -10,11 +10,10 @@ define(function(require) {
 
     describe('AddBookView', function() {
         it('hides the view when cancelling', function() {
-            var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
-            var genres = new Genres();
-            responseFaker.fakeResponse(genresResponse, {}, function() {
-                genres.fetch();
-            });
+            var genres = new Genres([
+                {"name":"Crime novel"},
+                {"name":"Picaresco"}
+            ]);
 
             var view = new AddBookView({
                 genres: genres
@@ -29,11 +28,10 @@ define(function(require) {
         });
 
         it('saves the book', function() {
-            var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
-            var genres = new Genres();
-            responseFaker.fakeResponse(genresResponse, {}, function() {
-                genres.fetch();
-            });
+            var genres = new Genres([
+                {"name":"Crime novel"},
+                {"name":"Picaresco"}
+            ]);
 
             var view = new AddBookView({
                 genres: genres
