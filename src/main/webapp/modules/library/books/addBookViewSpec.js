@@ -44,17 +44,8 @@ define(function(require) {
             pageObject.
                 author("Miguel de Cervantes Saavedra").
                 title("Don Quixote").
-                genre("Picaresco");
-
-            var server = sinon.fakeServer.create();
-
-            view.$(".submit-button").click();
-
-            // Responding with what was sent in
-            var response = server.queue[0].requestBody;
-            server.respondWith([200, { "Content-Type": "application/json" }, response]);
-            server.respond();
-            server.restore();
+                genre("Picaresco").
+                save();
 
             expect(callback).toHaveBeenCalledWith(sinon.match({
                 attributes: {

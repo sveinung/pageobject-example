@@ -1,6 +1,7 @@
 define(function(require) {
 
     var _ = require('underscore');
+    var sinon = require('sinon');
 
     var DropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
 
@@ -27,6 +28,17 @@ define(function(require) {
                 openMenu().
                 chooseOption(genre);
             return this;
+        },
+        save: function() {
+            var server = sinon.fakeServer.create();
+
+            this.$view.find(".submit-button").click();
+
+            // Responding with what was sent in
+            var response = server.queue[0].requestBody;
+            server.respondWith([200, { "Content-Type": "application/json" }, response]);
+            server.respond();
+            server.restore();
         }
     });
 
