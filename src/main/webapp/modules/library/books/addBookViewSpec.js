@@ -1,8 +1,6 @@
 define(function(require) {
     var sinon = require('sinon');
 
-    var responseFaker = require('responseFaker');
-
     var AddBookView = require('modules/library/books/addBookView');
     var Genres = require('modules/library/books/genres');
 
@@ -48,9 +46,15 @@ define(function(require) {
                 title("Don Quixote").
                 genre("Picaresco");
 
-            responseFaker.fakeResponse(view.book.toJSON(), {}, function() {
-                view.$(".submit-button").click();
-            });
+            var server = sinon.fakeServer.create();
+
+            view.$(".submit-button").click();
+
+            // Responding with what was sent in
+            var response = server.queue[0].requestBody;
+            server.respondWith([200, { "Content-Type": "application/json" }, response]);
+            server.respond();
+            server.restore();
 
             expect(callback).toHaveBeenCalledWith(sinon.match({
                 attributes: {
