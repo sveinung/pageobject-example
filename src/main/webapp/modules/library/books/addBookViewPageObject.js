@@ -39,6 +39,13 @@ define(function(require) {
             server.respondWith([200, { "Content-Type": "application/json" }, response]);
             server.respond();
             server.restore();
+
+            return this;
+        },
+        expectToHaveSaved: function(saveCallback, book) {
+            expect(saveCallback).toHaveBeenCalledWith(sinon.match({
+                attributes: book
+            }));
         }
     });
 

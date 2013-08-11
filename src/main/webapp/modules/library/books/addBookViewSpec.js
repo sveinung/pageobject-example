@@ -45,15 +45,13 @@ define(function(require) {
                 author("Miguel de Cervantes Saavedra").
                 title("Don Quixote").
                 genre("Picaresco").
-                save();
+                save().
 
-            expect(callback).toHaveBeenCalledWith(sinon.match({
-                attributes: {
+                expectToHaveSaved(callback, {
                     author: "Miguel de Cervantes Saavedra",
                     title: "Don Quixote",
                     genre: "Picaresco"
-                }
-            }));
+                });
         });
     });
 });
