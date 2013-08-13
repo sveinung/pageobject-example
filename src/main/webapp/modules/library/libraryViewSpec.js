@@ -1,10 +1,11 @@
 define(function(require) {
 
     var $ = require('jquery'),
-        responseFaker = require('responseFaker'),
 
         LibraryView = require('modules/library/libraryView')
-        Library = require('modules/library/library');
+        Library = require('modules/library/library'),
+
+        LibraryViewPageObject = require('modules/library/libraryViewPageObject');
 
     describe('LibraryView', function() {
         it('has books', function() {
@@ -27,19 +28,16 @@ define(function(require) {
                 {"title":"Of Mice and Men","uri":"/book/1"},
                 {"title":"Sult","uri":"/book/2"}
             ]);
-
             var libraryView = new LibraryView({
                 library: library
             });
-
             libraryView.render();
 
-            var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
-            responseFaker.fakeResponse(genresResponse, {}, function() {
-                libraryView.$(".add-book").click();
-            });
+            var pageObject = new LibraryViewPageObject(libraryView);
 
-            expect(libraryView.$(".add-book-view")).toBe("form");
+            pageObject.
+                clickAddBook();
+
             expect(libraryView.$(".add-book-view")).not.toHaveClass("hide");
         });
     });
