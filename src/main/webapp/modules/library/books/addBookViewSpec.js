@@ -43,7 +43,6 @@ define(function(require) {
                 title("Don Quixote").
                 genre("Picaresco").
                 save().
-
                 expectToHaveSaved({
                     author: "Miguel de Cervantes Saavedra",
                     title: "Don Quixote",

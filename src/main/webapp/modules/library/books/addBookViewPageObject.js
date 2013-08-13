@@ -30,8 +30,8 @@ define(function(require) {
             return this;
         },
         save: function() {
-            this.saveCallback = sinon.spy();
-            this.view.book.on('sync', this.saveCallback);
+            var saveCallback = sinon.spy();
+            this.view.book.on('sync', saveCallback);
 
             var server = sinon.fakeServer.create();
 
@@ -43,13 +43,14 @@ define(function(require) {
             server.respond();
             server.restore();
 
-            return this;
+            return {
+                expectToHaveSaved: function(book) {
+                    expect(saveCallback).toHaveBeenCalledWith(sinon.match({
+                        attributes: book
+                    }));
+                }
+            };
         },
-        expectToHaveSaved: function(book) {
-            expect(this.saveCallback).toHaveBeenCalledWith(sinon.match({
-                attributes: book
-            }));
-        }
     });
 
     return AddBookViewPageObject;
