@@ -36,10 +36,7 @@ define(function(require) {
             });
             view.render();
 
-            var pageObject = new AddBookViewPageObject(view.$el);
-
-            var callback = sinon.spy();
-            view.book.on('sync', callback);
+            var pageObject = new AddBookViewPageObject(view);
 
             pageObject.
                 author("Miguel de Cervantes Saavedra").
@@ -47,7 +44,7 @@ define(function(require) {
                 genre("Picaresco").
                 save().
 
-                expectToHaveSaved(callback, {
+                expectToHaveSaved({
                     author: "Miguel de Cervantes Saavedra",
                     title: "Don Quixote",
                     genre: "Picaresco"
