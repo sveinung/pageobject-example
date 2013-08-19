@@ -51,6 +51,11 @@ define(function(require) {
                 }
             };
         },
+        expectToBeVisible: function() {
+            expect(this.view.$el).not.toBeEmpty();
+            expect(this.view.$el).not.toHaveClass('hide');
+            return this;
+        }
     });
 
     return AddBookViewPageObject;

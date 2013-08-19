@@ -33,12 +33,11 @@ define(function(require) {
             });
             libraryView.render();
 
-            var pageObject = new LibraryViewPageObject(libraryView);
+            var libraryViewPageObject = new LibraryViewPageObject(libraryView);
 
-            pageObject.
-                clickAddBook();
+            var addBookViewPageObject = libraryViewPageObject.clickAddBook();
 
-            expect(libraryView.$(".add-book-view")).not.toHaveClass("hide");
+            addBookViewPageObject.expectToBeVisible();
         });
     });
 });
