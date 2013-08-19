@@ -36,9 +36,9 @@ define(function(require) {
             });
             view.render();
 
-            var pageObject = new AddBookViewPageObject(view);
+            var addBookViewPageObject = new AddBookViewPageObject(view);
 
-            pageObject.
+            addBookViewPageObject.
                 author("Miguel de Cervantes Saavedra").
                 title("Don Quixote").
                 genre("Picaresco").
