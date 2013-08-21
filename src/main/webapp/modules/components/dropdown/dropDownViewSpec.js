@@ -14,9 +14,9 @@ define(function(require) {
                 }]
             });
             view.render();
-            var pageObject = new DropDownViewPageObject(view.$el);
+            var dropDownViewPageObject = new DropDownViewPageObject(view.$el);
 
-            pageObject.
+            dropDownViewPageObject.
                 expectToBeHidden().
                 openMenu().
                 expectToBeVisible();
@@ -32,9 +32,9 @@ define(function(require) {
                 }]
             });
             view.render();
-            var pageObject = new DropDownViewPageObject(view.$el);
+            var dropDownViewPageObject = new DropDownViewPageObject(view.$el);
 
-            pageObject.
+            dropDownViewPageObject.
                 expectToHaveChosen("Choose!").
                 openMenu().
                 chooseOption("Satire").
