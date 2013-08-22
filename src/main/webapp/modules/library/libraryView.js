@@ -1,12 +1,13 @@
 define(function(require) {
 
-    var _ = require('underscore'),
-        BaseView = require('base/view'),
+    var _ = require('underscore');
+    var BaseView = require('base/view');
 
-        template = require('text!./libraryView.mustache'),
+    var template = require('text!./libraryView.mustache');
 
-        AddBookView = require('./books/addBookView'),
-        Genres = require('./books/genres');
+    var AddBookView = require('./books/addBookView');
+    var Genres = require('./books/genres');
+    var Book = require('./books/book');
 
     var LibraryView = BaseView.extend({
         events: {
@@ -17,8 +18,10 @@ define(function(require) {
             this.library = options.library;
 
             this.genres = new Genres();
+            var book = new Book();
             this.addBookView = new AddBookView({
-                genres: this.genres
+                genres: this.genres,
+                book: book
             });
             this.listenTo(this.addBookView, "book:added", this.bookAdded);
             this.listenTo(this.library, "add", this.render);

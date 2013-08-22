@@ -1,11 +1,9 @@
 define(function(require) {
 
     require('css!./addBookView.css');
-    var template = require('text!./addBookView.mustache'),
-        BaseView = require('base/view'),
-        DropDownView = require('modules/components/dropdown/dropDownView'),
-
-        Book = require('./book');
+    var template = require('text!./addBookView.mustache');
+    var BaseView = require('base/view');
+    var DropDownView = require('modules/components/dropdown/dropDownView');
 
     var AddBookView = BaseView.extend({
         events: {
@@ -17,7 +15,7 @@ define(function(require) {
 
         initialize: function(options) {
             this.genres = options.genres;
-            this.book = new Book();
+            this.book = options.book;
             this.genresDropDown = new DropDownView({
                 defaultOption: "Choose a genre"
             });

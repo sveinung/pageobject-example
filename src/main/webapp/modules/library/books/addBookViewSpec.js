@@ -3,6 +3,7 @@ define(function(require) {
 
     var AddBookView = require('modules/library/books/addBookView');
     var Genres = require('modules/library/books/genres');
+    var Book = require('modules/library/books/book');
 
     var AddBookViewPageObject = require('modules/library/books/addBookViewPageObject');
 
@@ -13,8 +14,11 @@ define(function(require) {
                 {"name":"Picaresco"}
             ]);
 
+            var book = new Book();
+
             var view = new AddBookView({
-                genres: genres
+                genres: genres,
+                book: book
             });
             view.render();
 
@@ -31,8 +35,11 @@ define(function(require) {
                 {"name":"Picaresco"}
             ]);
 
+            var book = new Book();
+
             var view = new AddBookView({
-                genres: genres
+                genres: genres,
+                book: book
             });
             view.render();
 
