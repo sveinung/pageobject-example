@@ -1,7 +1,7 @@
 define(function(require) {
 
     var _ = require('underscore');
-    var responseFaker = require('responseFaker');
+    var sinon = require('sinon');
 
     var AddBookViewPageObject = require('modules/library/books/addBookViewPageObject');
 
@@ -11,11 +11,15 @@ define(function(require) {
 
     _.extend(LibraryViewPageObject.prototype, {
         clickAddBook: function() {
-            var self = this;
+            var server = sinon.fakeServer.create();
+
             var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
-            responseFaker.fakeResponse(genresResponse, {}, function() {
-                self.view.$(".add-book").click();
-            });
+
+            this.view.$(".add-book").click();
+
+            server.respondWith([200, { "Content-Type": "application/json" }, JSON.stringify(genresResponse)]);
+            server.respond();
+            server.restore();
 
             return new AddBookViewPageObject(this.view.addBookView);
         }
