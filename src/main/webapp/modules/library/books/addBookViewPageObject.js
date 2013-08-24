@@ -44,9 +44,9 @@ define(function(require) {
             server.restore();
 
             return {
-                expectToHaveSaved: function(book) {
+                expectToHaveSaved: function(attributes) {
                     expect(saveCallback).toHaveBeenCalledWith(sinon.match({
-                        attributes: book
+                        attributes: attributes
                     }));
                 }
             };
