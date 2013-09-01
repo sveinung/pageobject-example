@@ -19,10 +19,12 @@ public class MyApplication extends Application {
     public Set<Object> getSingletons() {
         HashSet<Object> resources = new HashSet<>();
 
-        resources.add(new LibraryResource(new LibraryRepository(),
+        BookRepository bookRepository = new BookRepository();
+
+        resources.add(new LibraryResource(new LibraryRepository(bookRepository),
                                           new BookURIBuilder()));
 
-        resources.add(new BookResource(new BookRepository()));
+        resources.add(new BookResource(bookRepository));
 
         resources.add(new GenreResource(new GenreRepository()));
 

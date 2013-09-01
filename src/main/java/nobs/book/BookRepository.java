@@ -1,23 +1,43 @@
 package nobs.book;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class BookRepository {
 
-    public Book getBook(BookID id) {
-        switch (id.getValue()) {
-            case 1:
-                return new Book(id, "John Steinbeck", "Of Mice and Men", "Novella");
-            case 2:
-                return new Book(id, "Isaac Asimov", "The Last Question", "Science fiction");
-            case 3:
-                return new Book(id, "Moby Dick", "Herman Melville", "Adventure");
-            case 4:
-                return new Book(id, "Sult", "Knut Hamsun", "Novel");
-            default:
-                return new Book();
+    private final HashMap<Integer,Book> books;
+    private int latestId;
+
+    public BookRepository() {
+        latestId = 5;
+        books = new HashMap<Integer,Book>() {{
+            put(1, new Book(new BookID(1), "John Steinbeck", "Of Mice and Men", "Novella"));
+            put(2, new Book(new BookID(2), "Isaac Asimov", "The Last Question", "Science fiction"));
+            put(3, new Book(new BookID(3), "Moby Dick", "Herman Melville", "Adventure"));
+            put(4, new Book(new BookID(4), "Sult", "Knut Hamsun", "Novel"));
+        }};
+    }
+
+    public List<BookShort> getBooks() {
+        List<BookShort> bookSummaries = new ArrayList<>();
+        for (Book book : books.values()) {
+            bookSummaries.add(new BookShort(book.getTitle(), book.getId()));
         }
+
+        return bookSummaries;
+    }
+
+    public Book getBook(BookID id) {
+        return books.get(id.getValue());
     }
 
     public Book saveBook(Book book) {
-        return new Book(new BookID(5), book.getAuthor(), book.getTitle(), book.getGenre());
+        Book savedBook = new Book(new BookID(latestId), book.getAuthor(), book.getTitle(), book.getGenre());
+        latestId++;
+
+        books.put(latestId, savedBook);
+
+        return savedBook;
     }
 }
