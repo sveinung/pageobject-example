@@ -2,6 +2,7 @@ define(function(require) {
 
     var _ = require('underscore');
     var sinon = require('sinon');
+    var PageObject = require('base/pageObject');
 
     var DropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
 
@@ -10,7 +11,7 @@ define(function(require) {
         this.genreDropDown = new DropDownViewPageObject(this.view.$(".genres-dropdown"));
     };
 
-    _.extend(AddBookViewPageObject.prototype, {
+    _.extend(AddBookViewPageObject.prototype, PageObject, {
         author: function(author) {
             this.view.$(".author-input").
                 val(author).
@@ -53,15 +54,6 @@ define(function(require) {
         },
         cancel: function() {
             this.view.$(".cancel-button").click();
-            return this;
-        },
-        expectToBeVisible: function() {
-            expect(this.view.$el).not.toBeEmpty();
-            expect(this.view.$el).not.toHaveClass('hide');
-            return this;
-        },
-        expectToBeHidden: function() {
-            expect(this.view.$el).toHaveClass('hide');
             return this;
         }
     });
