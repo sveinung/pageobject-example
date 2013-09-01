@@ -14,8 +14,8 @@ public class BookRepository {
         books = new HashMap<Integer,Book>() {{
             put(1, new Book(new BookID(1), "John Steinbeck", "Of Mice and Men", "Novella"));
             put(2, new Book(new BookID(2), "Isaac Asimov", "The Last Question", "Science fiction"));
-            put(3, new Book(new BookID(3), "Moby Dick", "Herman Melville", "Adventure"));
-            put(4, new Book(new BookID(4), "Sult", "Knut Hamsun", "Novel"));
+            put(3, new Book(new BookID(3), "Herman Melville", "Moby Dick", "Adventure"));
+            put(4, new Book(new BookID(4), "Knut Hamsun", "Sult", "Novel"));
         }};
     }
 
