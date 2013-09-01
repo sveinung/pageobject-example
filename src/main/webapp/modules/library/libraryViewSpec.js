@@ -17,10 +17,11 @@ define(function(require) {
             var libraryView = new LibraryView({
                 library: library
             });
-
             libraryView.render();
 
-            expect(libraryView.$(".books li").size()).toBe(2);
+            var libraryViewPageObject = new LibraryViewPageObject(libraryView);
+
+            libraryViewPageObject.expectToHaveNumberOfBooks(2);
         });
 
         it('shows the AddBookView', function() {
