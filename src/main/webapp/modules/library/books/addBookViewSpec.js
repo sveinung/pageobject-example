@@ -22,11 +22,12 @@ define(function(require) {
             });
             view.render();
 
-            expect(view.$el).not.toHaveClass('hide');
+            var addBookViewPageObject = new AddBookViewPageObject(view);
 
-            view.$(".cancel-button").click();
-
-            expect(view.$el).toHaveClass('hide');
+            addBookViewPageObject.
+                expectToBeVisible().
+                cancel().
+                expectToBeHidden();
         });
 
         it('saves the book', function() {

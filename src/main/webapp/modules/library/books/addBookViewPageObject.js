@@ -51,9 +51,17 @@ define(function(require) {
                 }
             };
         },
+        cancel: function() {
+            this.view.$(".cancel-button").click();
+            return this;
+        },
         expectToBeVisible: function() {
             expect(this.view.$el).not.toBeEmpty();
             expect(this.view.$el).not.toHaveClass('hide');
+            return this;
+        },
+        expectToBeHidden: function() {
+            expect(this.view.$el).toHaveClass('hide');
             return this;
         }
     });
