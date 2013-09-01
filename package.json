@@ -20,5 +20,8 @@
     "underscore": "~1.4.4",
     "karma": "~0.8.6",
     "npm-bin": "~0.1.0"
+  },
+  "devDependencies": {
+    "cucumber": "~0.3.1"
   }
 }

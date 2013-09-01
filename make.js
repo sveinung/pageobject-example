@@ -30,6 +30,16 @@ target.browser = function() {
     bin('karma', ['start', 'karma.conf.js']);
 };
 
+target.acceptance = function() {
+    section('Running acceptance tests');
+    var featurePath = 'src/main/webapp/modules/library/';
+    bin('cucumber.js', [
+        featurePath,
+        '--require ' + featurePath + '/librarySteps.js',
+        '--format pretty'
+    ]);
+};
+
 target.build = function() {
     var rjsConfig = path.join(config, 'buildconfig.js');
     bin('r.js', ['-o ' + rjsConfig, 'out=' + jsFile]);
