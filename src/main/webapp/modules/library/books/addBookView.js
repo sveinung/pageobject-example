@@ -60,6 +60,7 @@ define(function(require) {
         },
 
         show: function() {
+            this.book.clear();
             this.$el.removeClass('hide');
         },
 
