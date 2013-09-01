@@ -1,11 +1,11 @@
 define(function(require) {
 
-    var $ = require('jquery'),
+    var $ = require('jquery');
 
-        LibraryView = require('modules/library/libraryView')
-        Library = require('modules/library/library'),
+    var LibraryView = require('modules/library/libraryView');
+    var Library = require('modules/library/library');
 
-        LibraryViewPageObject = require('modules/library/libraryViewPageObject');
+    var LibraryViewPageObject = require('modules/library/libraryViewPageObject');
 
     describe('LibraryView', function() {
         it('has books', function() {

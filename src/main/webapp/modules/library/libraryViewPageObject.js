@@ -13,7 +13,10 @@ define(function(require) {
         clickAddBook: function() {
             var server = sinon.fakeServer.create();
 
-            var genresResponse = [{"name":"Crime novel"},{"name":"Picaresco"}];
+            var genresResponse = [
+                {"name":"Crime novel"},
+                {"name":"Picaresco"}
+            ];
 
             this.view.$(".add-book").click();
 
