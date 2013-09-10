@@ -10,8 +10,8 @@ define(function(require) {
     describe('LibraryView', function() {
         it('has books', function() {
             var library = new Library([
-                {"title":"Of Mice and Men","uri":"/book/1"},
-                {"title":"Sult","uri":"/book/2"}
+                { title: "Of Mice and Men", uri: "/book/1" },
+                { title: "Sult", uri: "/book/2"}
             ]);
 
             var libraryView = new LibraryView({
@@ -26,8 +26,8 @@ define(function(require) {
 
         it('shows the AddBookView', function() {
             var library = new Library([
-                {"title":"Of Mice and Men","uri":"/book/1"},
-                {"title":"Sult","uri":"/book/2"}
+                { title: "Of Mice and Men", uri: "/book/1" },
+                { title: "Sult", uri: "/book/2"}
             ]);
             var libraryView = new LibraryView({
                 library: library
