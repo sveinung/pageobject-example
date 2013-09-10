@@ -36,9 +36,9 @@ define(function(require) {
 
             var libraryViewPageObject = new LibraryViewPageObject(libraryView);
 
-            var addBookViewPageObject = libraryViewPageObject.clickAddBook();
-
-            addBookViewPageObject.expectToBeVisible();
+            libraryViewPageObject.clickAddBook(function(addBookViewPageObject) {
+                addBookViewPageObject.expectToBeVisible();
+            });
         });
     });
 });
