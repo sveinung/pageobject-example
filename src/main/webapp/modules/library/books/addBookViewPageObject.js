@@ -1,6 +1,5 @@
 define(function(require) {
 
-    var _ = require('underscore');
     var sinon = require('sinon');
 
     var dropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
@@ -26,24 +25,18 @@ define(function(require) {
                 return this;
             },
             save: function() {
-                var saveCallback = sinon.spy();
-                addBookView.book.on('sync', saveCallback);
-
                 var server = sinon.fakeServer.create();
 
                 addBookView.$(".submit-button").click();
 
-                // Responding with what was sent in
-                var response = server.queue[0].requestBody;
-                server.respondWith([200, { "Content-Type": "application/json" }, response]);
+                var requestBody = server.queue[0].requestBody;
+
                 server.respond();
                 server.restore();
 
                 return {
                     expectToHaveSaved: function(attributes) {
-                        expect(saveCallback).toHaveBeenCalledWith(sinon.match({
-                            attributes: attributes
-                        }));
+                        expect(JSON.parse(requestBody)).toEqual(attributes);
                     }
                 };
             },
