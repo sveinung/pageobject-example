@@ -12,7 +12,7 @@ define(function(require) {
             var addBookView = createAddBookView();
             addBookView.render();
 
-            addBookViewPageObject(addBookView).
+            addBookViewPageObject(addBookView.$el).
                 expectToBeVisible().
                 cancel().
                 expectToBeHidden();
@@ -22,7 +22,7 @@ define(function(require) {
             var addBookView = createAddBookView({ genres: ["Picaresco"] });
             addBookView.render();
 
-            addBookViewPageObject(addBookView).
+            addBookViewPageObject(addBookView.$el).
                 author("Miguel de Cervantes Saavedra").
                 title("Don Quixote").
                 genre("Picaresco").

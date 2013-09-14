@@ -15,7 +15,7 @@ define(function(require) {
             var libraryView = createLibraryView({ books: books });
             libraryView.render();
 
-            libraryViewPageObject(libraryView).
+            libraryViewPageObject(libraryView.$el).
                 expectToHaveNumberOfBooks(2);
         });
 
@@ -23,7 +23,7 @@ define(function(require) {
             var libraryView = createLibraryView();
             libraryView.render();
 
-            libraryViewPageObject(libraryView).
+            libraryViewPageObject(libraryView.$el).
                 clickAddBook(function(addBookViewPageObject) {
                     addBookViewPageObject.expectToBeVisible();
                 });
@@ -33,7 +33,7 @@ define(function(require) {
             var libraryView = createLibraryView();
             libraryView.render();
 
-            libraryViewPageObject(libraryView).
+            libraryViewPageObject(libraryView.$el).
                 expectToHaveNumberOfBooks(0);
         });
 
@@ -41,7 +41,7 @@ define(function(require) {
             var libraryView = createLibraryView();
             libraryView.render();
 
-            libraryViewPageObject(libraryView).
+            libraryViewPageObject(libraryView.$el).
                 clickAddBook(function(addBookViewPageObject) {
                     addBookViewPageObject.createBook();
                 }).
@@ -52,7 +52,7 @@ define(function(require) {
             var libraryView = createLibraryView();
             libraryView.render();
 
-            libraryViewPageObject(libraryView).
+            libraryViewPageObject(libraryView.$el).
                 clickAddBook(function(addBookViewPageObject) {
                     addBookViewPageObject.cancel();
                 }).

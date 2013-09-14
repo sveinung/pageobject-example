@@ -4,7 +4,7 @@ define(function(require) {
 
     var addBookViewPageObject = require('modules/library/books/addBookViewPageObject');
 
-    return function libraryViewPageObject(libraryView) {
+    return function libraryViewPageObject($el) {
         return {
             clickAddBook: function(done) {
                 var server = sinon.fakeServer.create();
@@ -14,18 +14,18 @@ define(function(require) {
                     { name: "Picaresco" }
                 ];
 
-                libraryView.$(".add-book").click();
+                $el.find(".add-book").click();
 
                 server.respondWith([200, { "Content-Type": "application/json" }, JSON.stringify(genresResponse)]);
                 server.respond();
                 server.restore();
 
-                done(addBookViewPageObject(libraryView.addBookView));
+                done(addBookViewPageObject($el.find('.add-book-view')));
 
                 return this;
             },
             expectToHaveNumberOfBooks: function(expectedNumberOfBooks) {
-                expect(libraryView.$(".books li").size()).toBe(expectedNumberOfBooks);
+                expect($el.find(".books li").size()).toBe(expectedNumberOfBooks);
                 return this;
             }
         };

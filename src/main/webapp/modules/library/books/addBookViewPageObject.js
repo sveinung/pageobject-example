@@ -4,22 +4,22 @@ define(function(require) {
 
     var dropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
 
-    return function addBookViewPageObject(addBookView) {
+    return function addBookViewPageObject($el) {
         return {
             author: function(author) {
-                addBookView.$(".author-input").
+                $el.find(".author-input").
                     val(author).
                     change();
                 return this;
             },
             title: function(title) {
-                addBookView.$(".title-input").
+                $el.find(".title-input").
                     val(title).
                     change();
                 return this;
             },
             genre: function(genre) {
-                dropDownViewPageObject(addBookView.$(".genres-dropdown")).
+                dropDownViewPageObject($el.find(".genres-dropdown")).
                     openMenu().
                     chooseOption(genre);
                 return this;
@@ -27,7 +27,7 @@ define(function(require) {
             save: function() {
                 var server = sinon.fakeServer.create();
 
-                addBookView.$(".submit-button").click();
+                $el.find(".submit-button").click();
 
                 var requestBody = server.queue[0].requestBody;
 
@@ -47,16 +47,16 @@ define(function(require) {
                     save();
             },
             cancel: function() {
-                addBookView.$(".cancel-button").click();
+                $el.find(".cancel-button").click();
                 return this;
             },
             expectToBeVisible: function() {
-                expect(addBookView.$el).not.toBeEmpty();
-                expect(addBookView.$el).not.toHaveClass('hide');
+                expect($el).not.toBeEmpty();
+                expect($el).not.toHaveClass('hide');
                 return this;
             },
             expectToBeHidden: function() {
-                expect(addBookView.$el).toHaveClass('hide');
+                expect($el).toHaveClass('hide');
                 return this;
             }
         };
