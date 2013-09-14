@@ -1,44 +1,51 @@
 define(function(require) {
 
     var DropDownView = require('modules/components/dropdown/dropDownView');
-    var DropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
+    var dropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
 
     describe('DropDownView', function() {
         it('opens the dropdown', function() {
-            var view = new DropDownView({
-                defaultOption: "Choose!",
-                options: [{
-                    value: "Picaresco"
-                }, {
-                    value: "Satire"
-                }]
-            });
+            var view = createDropDownView();
             view.render();
-            var dropDownViewPageObject = new DropDownViewPageObject(view.$el);
 
-            dropDownViewPageObject.
+            dropDownViewPageObject(view.$el).
                 expectToBeHidden().
                 openMenu().
                 expectToBeVisible();
         });
 
-        it('chooses an option', function() {
-            var view = new DropDownView({
-                defaultOption: "Choose!",
-                options: [{
-                    value: "Picaresco"
-                }, {
-                    value: "Satire"
-                }]
-            });
+        it('defaults to showing default option', function() {
+            var view = createDropDownView({ defaultOption: 'Choose!' });
             view.render();
-            var dropDownViewPageObject = new DropDownViewPageObject(view.$el);
 
-            dropDownViewPageObject.
-                expectToHaveChosen("Choose!").
+            dropDownViewPageObject(view.$el).
+                expectToHaveChosen("Choose!");
+        });
+
+        it('chooses an option', function() {
+            var view = createDropDownView({ options: ['Satire'] });
+            view.render();
+
+            dropDownViewPageObject(view.$el).
                 openMenu().
                 chooseOption("Satire").
                 expectToHaveChosen("Satire");
         });
     });
+
+    function createDropDownView(opts) {
+        opts = opts || {};
+
+        var options = [];
+        if (opts.options) {
+            options = _.map(opts.options, function(option) {
+                return { value: option };
+            })
+        }
+
+        return new DropDownView({
+            defaultOption: opts.defaultOption || "default option",
+            options: options
+        });
+    }
 });

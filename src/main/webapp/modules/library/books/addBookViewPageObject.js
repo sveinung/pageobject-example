@@ -1,62 +1,64 @@
 define(function(require) {
 
-    var _ = require('underscore');
     var sinon = require('sinon');
-    var PageObject = require('base/pageObject');
 
-    var DropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
+    var dropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
 
-    var AddBookViewPageObject = function(addBookView) {
-        this.view = addBookView;
-        this.genreDropDown = new DropDownViewPageObject(this.view.$(".genres-dropdown"));
+    return function addBookViewPageObject($el) {
+        return {
+            author: function(author) {
+                $el.find(".author-input").
+                    val(author).
+                    change();
+                return this;
+            },
+            title: function(title) {
+                $el.find(".title-input").
+                    val(title).
+                    change();
+                return this;
+            },
+            genre: function(genre) {
+                dropDownViewPageObject($el.find(".genres-dropdown")).
+                    openMenu().
+                    chooseOption(genre);
+                return this;
+            },
+            save: function() {
+                var server = sinon.fakeServer.create();
+
+                $el.find(".submit-button").click();
+
+                var requestBody = server.queue[0].requestBody;
+
+                server.respond();
+                server.restore();
+
+                return {
+                    expectToHaveSaved: function(attributes) {
+                        expect(JSON.parse(requestBody)).toEqual(attributes);
+                    }
+                };
+            },
+            createBook: function() {
+                return this.author("George R.R. Martin").
+                    title("A Game of Thrones").
+                    genre("Epic fantasy").
+                    save();
+            },
+            cancel: function() {
+                $el.find(".cancel-button").click();
+                return this;
+            },
+            expectToBeVisible: function() {
+                expect($el).not.toBeEmpty();
+                expect($el).not.toHaveClass('hide');
+                return this;
+            },
+            expectToBeHidden: function() {
+                expect($el).toHaveClass('hide');
+                return this;
+            }
+        };
     };
-
-    _.extend(AddBookViewPageObject.prototype, PageObject, {
-        author: function(author) {
-            this.view.$(".author-input").
-                val(author).
-                change();
-            return this;
-        },
-        title: function(title) {
-            this.view.$(".title-input").
-                val(title).
-                change();
-            return this;
-        },
-        genre: function(genre) {
-            this.genreDropDown.
-                openMenu().
-                chooseOption(genre);
-            return this;
-        },
-        save: function() {
-            var saveCallback = sinon.spy();
-            this.view.book.on('sync', saveCallback);
-
-            var server = sinon.fakeServer.create();
-
-            this.view.$(".submit-button").click();
-
-            // Responding with what was sent in
-            var response = server.queue[0].requestBody;
-            server.respondWith([200, { "Content-Type": "application/json" }, response]);
-            server.respond();
-            server.restore();
-
-            return {
-                expectToHaveSaved: function(attributes) {
-                    expect(saveCallback).toHaveBeenCalledWith(sinon.match({
-                        attributes: attributes
-                    }));
-                }
-            };
-        },
-        cancel: function() {
-            this.view.$(".cancel-button").click();
-            return this;
-        }
-    });
-
-    return AddBookViewPageObject;
 });

@@ -6,10 +6,9 @@ define(function(require) {
         url: 'http://localhost:8080/rest/genre',
 
         toOptions: function() {
-            return this.map(function(genreModel) {
-                var genre = genreModel.toJSON();
+            return this.map(function(genre) {
                 return {
-                    value: genre.name
+                    value: genre.get('name')
                 };
             });
         }

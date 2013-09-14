@@ -1,35 +1,33 @@
 define(function(require) {
 
-    var _ = require('underscore');
     var sinon = require('sinon');
 
-    var AddBookViewPageObject = require('modules/library/books/addBookViewPageObject');
+    var addBookViewPageObject = require('modules/library/books/addBookViewPageObject');
 
-    var LibraryViewPageObject = function(libraryView) {
-        this.view = libraryView;
+    return function libraryViewPageObject($el) {
+        return {
+            clickAddBook: function(done) {
+                var server = sinon.fakeServer.create();
+
+                var genresResponse = [
+                    { name: "Crime novel" },
+                    { name: "Picaresco" }
+                ];
+
+                $el.find(".add-book").click();
+
+                server.respondWith([200, { "Content-Type": "application/json" }, JSON.stringify(genresResponse)]);
+                server.respond();
+                server.restore();
+
+                done(addBookViewPageObject($el.find('.add-book-view')));
+
+                return this;
+            },
+            expectToHaveNumberOfBooks: function(expectedNumberOfBooks) {
+                expect($el.find(".books li").size()).toBe(expectedNumberOfBooks);
+                return this;
+            }
+        };
     };
-
-    _.extend(LibraryViewPageObject.prototype, {
-        clickAddBook: function() {
-            var server = sinon.fakeServer.create();
-
-            var genresResponse = [
-                {"name":"Crime novel"},
-                {"name":"Picaresco"}
-            ];
-
-            this.view.$(".add-book").click();
-
-            server.respondWith([200, { "Content-Type": "application/json" }, JSON.stringify(genresResponse)]);
-            server.respond();
-            server.restore();
-
-            return new AddBookViewPageObject(this.view.addBookView);
-        },
-        expectToHaveNumberOfBooks: function(numberOfBooksExpected) {
-            expect(this.view.$(".books li").size()).toBe(numberOfBooksExpected);
-        }
-    });
-
-    return LibraryViewPageObject;
 });

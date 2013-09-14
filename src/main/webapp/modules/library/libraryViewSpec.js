@@ -1,44 +1,77 @@
 define(function(require) {
 
-    var $ = require('jquery');
-
     var LibraryView = require('modules/library/libraryView');
     var Library = require('modules/library/library');
 
-    var LibraryViewPageObject = require('modules/library/libraryViewPageObject');
+    var libraryViewPageObject = require('modules/library/libraryViewPageObject');
 
     describe('LibraryView', function() {
-        it('has books', function() {
-            var library = new Library([
-                {"title":"Of Mice and Men","uri":"/book/1"},
-                {"title":"Sult","uri":"/book/2"}
-            ]);
+        it('displays books', function() {
+            var books = [
+                "Of Mice and Men",
+                "Sult"
+            ];
 
-            var libraryView = new LibraryView({
-                library: library
-            });
+            var libraryView = createLibraryView({ books: books });
             libraryView.render();
 
-            var libraryViewPageObject = new LibraryViewPageObject(libraryView);
-
-            libraryViewPageObject.expectToHaveNumberOfBooks(2);
+            libraryViewPageObject(libraryView.$el).
+                expectToHaveNumberOfBooks(2);
         });
 
-        it('shows the AddBookView', function() {
-            var library = new Library([
-                {"title":"Of Mice and Men","uri":"/book/1"},
-                {"title":"Sult","uri":"/book/2"}
-            ]);
-            var libraryView = new LibraryView({
-                library: library
-            });
+        it('can show view for adding books', function() {
+            var libraryView = createLibraryView();
             libraryView.render();
 
-            var libraryViewPageObject = new LibraryViewPageObject(libraryView);
+            libraryViewPageObject(libraryView.$el).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.expectToBeVisible();
+                });
+        });
 
-            var addBookViewPageObject = libraryViewPageObject.clickAddBook();
+        it('defaults to showing no books', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
 
-            addBookViewPageObject.expectToBeVisible();
+            libraryViewPageObject(libraryView.$el).
+                expectToHaveNumberOfBooks(0);
+        });
+
+        it('adds a book to the list', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
+
+            libraryViewPageObject(libraryView.$el).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.createBook();
+                }).
+                expectToHaveNumberOfBooks(1);
+        });
+
+        it('does not add book when canceling', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
+
+            libraryViewPageObject(libraryView.$el).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.cancel();
+                }).
+                expectToHaveNumberOfBooks(0);
         });
     });
+
+    function createLibraryView(options) {
+        options = options || {};
+
+        var books = [];
+        if (options.books) {
+            books = _.map(options.books, function(book, i) {
+                return { title: book, url: '/books/' + i };
+            });
+        }
+
+        return new LibraryView({
+            library: new Library(books)
+        });
+    }
 });

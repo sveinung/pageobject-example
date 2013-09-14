@@ -1,37 +1,33 @@
 define(function(require) {
 
-    var _ = require('underscore');
+    var dropDownViewPageObject = function($view) {
+        return {
+            openMenu: function() {
+                $view.find(".dropdown-trigger").click();
+                return this;
+            },
 
-    var DropDownViewPageObject = function($dropDownView) {
-        this.$view = $dropDownView;
+            chooseOption: function(option) {
+                $view.find(".dropdown-menu a[data-value='" + option + "']").click();
+                return this;
+            },
+
+            expectToHaveChosen: function(option) {
+                expect($view.find(".dropdown-trigger .chosen-value")).toHaveText(option);
+                return this;
+            },
+
+            expectToBeHidden: function() {
+                expect($view.find(".dropdown-menu")).toHaveClass("hide");
+                return this;
+            },
+
+            expectToBeVisible: function() {
+                expect($view.find(".dropdown-menu")).not.toHaveClass("hide");
+                return this;
+            }
+        };
     };
 
-    _.extend(DropDownViewPageObject.prototype, {
-        openMenu: function() {
-            this.$view.find(".dropdown-trigger").click();
-            return this;
-        },
-
-        chooseOption: function(option) {
-            this.$view.find(".dropdown-menu a[data-value='" + option + "']").click();
-            return this;
-        },
-
-        expectToHaveChosen: function(option) {
-            expect(this.$view.find(".dropdown-trigger .chosen-value")).toHaveText(option);
-            return this;
-        },
-
-        expectToBeHidden: function() {
-            expect(this.$view.find(".dropdown-menu")).toHaveClass("hide");
-            return this;
-        },
-
-        expectToBeVisible: function() {
-            expect(this.$view.find(".dropdown-menu")).not.toHaveClass("hide");
-            return this;
-        }
-    });
-
-    return DropDownViewPageObject;
+    return dropDownViewPageObject;
 });

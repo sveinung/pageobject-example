@@ -5,48 +5,24 @@ define(function(require) {
     var Genres = require('modules/library/books/genres');
     var Book = require('modules/library/books/book');
 
-    var AddBookViewPageObject = require('modules/library/books/addBookViewPageObject');
+    var addBookViewPageObject = require('modules/library/books/addBookViewPageObject');
 
     describe('AddBookView', function() {
         it('hides the view when cancelling', function() {
-            var genres = new Genres([
-                {"name":"Crime novel"},
-                {"name":"Picaresco"}
-            ]);
+            var addBookView = createAddBookView();
+            addBookView.render();
 
-            var book = new Book();
-
-            var view = new AddBookView({
-                genres: genres,
-                book: book
-            });
-            view.render();
-
-            var addBookViewPageObject = new AddBookViewPageObject(view);
-
-            addBookViewPageObject.
+            addBookViewPageObject(addBookView.$el).
                 expectToBeVisible().
                 cancel().
                 expectToBeHidden();
         });
 
         it('saves the book', function() {
-            var genres = new Genres([
-                {"name":"Crime novel"},
-                {"name":"Picaresco"}
-            ]);
+            var addBookView = createAddBookView({ genres: ["Picaresco"] });
+            addBookView.render();
 
-            var book = new Book();
-
-            var view = new AddBookView({
-                genres: genres,
-                book: book
-            });
-            view.render();
-
-            var addBookViewPageObject = new AddBookViewPageObject(view);
-
-            addBookViewPageObject.
+            addBookViewPageObject(addBookView.$el).
                 author("Miguel de Cervantes Saavedra").
                 title("Don Quixote").
                 genre("Picaresco").
@@ -58,4 +34,20 @@ define(function(require) {
                 });
         });
     });
+
+    function createAddBookView(options) {
+        options = options || {};
+
+        var genres = [];
+        if (options.genres) {
+            genres = _.map(options.genres, function(genre) {
+                return { name: genre }
+            });
+        }
+
+        return new AddBookView({
+            genres: new Genres(genres),
+            book: new Book()
+        });
+    }
 });

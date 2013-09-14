@@ -7,8 +7,6 @@ define(function(require) {
 
     var AddBookView = BaseView.extend({
         events: {
-            'change .title-input': 'titleChanged',
-            'change .author-input': 'authorChanged',
             'click .cancel-button': 'cancelButtonClicked',
             'click .submit-button': 'submitButtonClicked'
         },
@@ -19,32 +17,16 @@ define(function(require) {
             this.genresDropDown = new DropDownView({
                 defaultOption: "Choose a genre"
             });
-            this.listenTo(this.genresDropDown, "selected", this.genreSelected);
         },
 
         render: function() {
             this.renderTemplate(template);
 
-            this.genresDropDown.setElement(this.$(".genres-dropdown"));
-            this.genresDropDown.renderWith({
+            this.genresDropDown.setElement(this.$(".genres-dropdown")).renderWith({
                 options: this.genres.toOptions()
             });
 
             return this;
-        },
-
-        titleChanged: function(event) {
-            var title = this.$(event.currentTarget).val();
-            this.book.set('title', title);
-        },
-
-        authorChanged: function(event) {
-            var author = this.$(event.currentTarget).val();
-            this.book.set('author', author);
-        },
-
-        genreSelected: function(genre) {
-            this.book.set('genre', genre);
         },
 
         cancelButtonClicked: function(event) {
@@ -54,7 +36,11 @@ define(function(require) {
 
         submitButtonClicked: function(event) {
             event.preventDefault();
-            this.book.save();
+            this.book.save({
+                author: this.$('.author-input').val(),
+                title: this.$('.title-input').val(),
+                genre: this.genresDropDown.selected()
+            });
             this.hide();
             this.trigger("book:added", this.book);
         },
