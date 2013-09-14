@@ -64,5 +64,13 @@ module.exports = {
             expect(browser.success).toBe(true);
             done();
         });
+    },
+    'displays some books': function(done) {
+        loadPage(function($library) {
+            libraryViewPageObject($library).
+                expectToHaveNumberOfBooks(4);
+
+            done();
+        });
     }
 };
