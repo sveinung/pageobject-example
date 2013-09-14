@@ -20,6 +20,8 @@ define(function(require) {
             var obj = _.pick(requestBody, _.keys(attributes));
 
             expect(obj).toEqual(attributes);
+
+            return this;
         }
     }
 
