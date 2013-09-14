@@ -29,7 +29,7 @@ define(function(require) {
                 });
         });
 
-        it('defaults to showing an empty book list', function() {
+        it('defaults to showing no books', function() {
             var libraryView = createLibraryView();
             libraryView.render();
 
@@ -46,6 +46,17 @@ define(function(require) {
                     addBookViewPageObject.createBook();
                 }).
                 expectToHaveNumberOfBooks(1);
+        });
+
+        it('does not add book when canceling', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
+
+            libraryViewPageObject(libraryView).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.cancel();
+                }).
+                expectToHaveNumberOfBooks(0);
         });
     });
 
