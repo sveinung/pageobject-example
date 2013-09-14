@@ -1,6 +1,8 @@
 var Browser = require('zombie');
 var assert = require('assert');
 
+require('expectations');
+
 browser = new Browser();
 
 var loadPage = function(callback) {
@@ -19,6 +21,7 @@ var loadPage = function(callback) {
 module.exports = {
     'shows the page': function(done) {
         loadPage(function($library) {
+            expect(browser.success).toBe(true);
             done();
         });
     }
