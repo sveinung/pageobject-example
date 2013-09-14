@@ -1,7 +1,5 @@
 define(function(require) {
 
-    var _ = require('underscore');
-
     var dropDownViewPageObject = function($view) {
         return {
             openMenu: function() {
