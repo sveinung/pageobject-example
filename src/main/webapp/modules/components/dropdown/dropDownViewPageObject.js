@@ -1,33 +1,29 @@
 define(function(require) {
 
-    var dropDownViewPageObject = function($view) {
-        return {
-            openMenu: function() {
-                $view.find(".dropdown-trigger").click();
-                return this;
-            },
+    var po = require('po');
+    var poVisibility = require('modules/components/po-visibility');
 
-            chooseOption: function(option) {
-                $view.find(".dropdown-menu a[data-value='" + option + "']").click();
-                return this;
-            },
+    return po.create({
+        openMenu: po.button(".dropdown-trigger"),
 
-            expectToHaveChosen: function(option) {
-                expect($view.find(".dropdown-trigger .chosen-value")).toHaveText(option);
-                return this;
-            },
+        chooseOption: function(option) {
+            this.$el.find(".dropdown-menu a[data-value='" + option + "']").click();
+            return this;
+        },
 
-            expectToBeHidden: function() {
-                expect($view.find(".dropdown-menu")).toHaveClass("hide");
-                return this;
-            },
+        expectToHaveChosen: function(option) {
+            expect(this.$el.find(".dropdown-trigger .chosen-value")).toHaveText(option);
+            return this;
+        },
 
-            expectToBeVisible: function() {
-                expect($view.find(".dropdown-menu")).not.toHaveClass("hide");
-                return this;
-            }
-        };
-    };
+        expectToBeHidden: function() {
+            expect(this.$el.find(".dropdown-menu")).toHaveClass("hide");
+            return this;
+        },
 
-    return dropDownViewPageObject;
-});
+        expectToBeVisible: function() {
+            expect(this.$el.find(".dropdown-menu")).not.toHaveClass("hide");
+            return this;
+        }
+    });
+})
