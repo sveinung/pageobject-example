@@ -9,14 +9,12 @@ define(function(require) {
 
     describe('LibraryView', function() {
         it('has books', function() {
-            var library = new Library([
-                { title: "Of Mice and Men", uri: "/book/1" },
-                { title: "Sult", uri: "/book/2" }
-            ]);
+            var books = [
+                "Of Mice and Men",
+                "Sult"
+            ];
 
-            var libraryView = new LibraryView({
-                library: library
-            });
+            var libraryView = createLibraryView({ books: books });
             libraryView.render();
 
             libraryViewPageObject(libraryView).
@@ -24,13 +22,7 @@ define(function(require) {
         });
 
         it('shows the AddBookView', function() {
-            var library = new Library([
-                { title: "Of Mice and Men", uri: "/book/1" },
-                { title: "Sult", uri: "/book/2" }
-            ]);
-            var libraryView = new LibraryView({
-                library: library
-            });
+            var libraryView = createLibraryView();
             libraryView.render();
 
             libraryViewPageObject(libraryView).
@@ -39,4 +31,19 @@ define(function(require) {
                 });
         });
     });
+
+    function createLibraryView(options) {
+        options = options || {};
+
+        var books = [];
+        if (options.books) {
+            books = _.map(options.books, function(book, i) {
+                return { title: book, url: '/books/' + i };
+            });
+        }
+
+        return new LibraryView({
+            library: new Library(books)
+        });
+    }
 });
