@@ -23,8 +23,8 @@ define(function(require) {
 
                 done(addBookViewPageObject(libraryView.addBookView));
             },
-            expectToHaveNumberOfBooks: function(numberOfBooksExpected) {
-                expect(libraryView.$(".books li").size()).toBe(numberOfBooksExpected);
+            expectToHaveNumberOfBooks: function(expectedNumberOfBooks) {
+                expect(libraryView.$(".books li").size()).toBe(expectedNumberOfBooks);
             }
         };
     };

@@ -8,7 +8,7 @@ define(function(require) {
     var libraryViewPageObject = require('modules/library/libraryViewPageObject');
 
     describe('LibraryView', function() {
-        it('has books', function() {
+        it('displays books', function() {
             var books = [
                 "Of Mice and Men",
                 "Sult"
@@ -21,7 +21,7 @@ define(function(require) {
                 expectToHaveNumberOfBooks(2);
         });
 
-        it('shows the AddBookView', function() {
+        it('can show view for adding books', function() {
             var libraryView = createLibraryView();
             libraryView.render();
 
