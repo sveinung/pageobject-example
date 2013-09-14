@@ -33,10 +33,11 @@ target.browser = function() {
 target.acceptance = function() {
     section('Running acceptance tests');
     var featurePath = 'src/main/webapp/modules/library/';
-    bin('cucumber.js', [
-        featurePath,
-        '--require ' + featurePath + '/librarySteps.js',
-        '--format pretty'
+    bin('mocha', [
+        '--debug',
+        '--timeout 10000',
+        '--ui exports',
+        featurePath + '*Steps.js'
     ]);
 };
 

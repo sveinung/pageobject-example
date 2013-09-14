@@ -1,13 +1,25 @@
-module.exports = function() {
-    var Given = When = Then = this.defineStep;
+var Browser = require('zombie');
+var assert = require('assert');
 
-    Given(/^I have opened the library$/, function(callback) {
-        // express the regexp above with the code you wish you had
-        callback.pending();
-    });
+browser = new Browser();
 
-    Then(/^I should have (\d+) books in my library$/, function(arg1, callback) {
-        // express the regexp above with the code you wish you had
-        callback.pending();
-    });
+var loadPage = function(callback) {
+    browser.visit('http://localhost:8080').
+        then(function() {
+            var $library;
+            browser.wait(function(window) {
+                $library = window.$(".library");
+                return $library.length > 0;
+            }, function() {
+                callback($library);
+            });
+        });
+};
+
+module.exports = {
+    'shows the page': function(done) {
+        loadPage(function($library) {
+            done();
+        });
+    }
 };
