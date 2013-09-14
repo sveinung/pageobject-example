@@ -5,7 +5,7 @@ define(function(require) {
     var LibraryView = require('modules/library/libraryView');
     var Library = require('modules/library/library');
 
-    var LibraryViewPageObject = require('modules/library/libraryViewPageObject');
+    var libraryViewPageObject = require('modules/library/libraryViewPageObject');
 
     describe('LibraryView', function() {
         it('has books', function() {
@@ -19,9 +19,8 @@ define(function(require) {
             });
             libraryView.render();
 
-            var libraryViewPageObject = new LibraryViewPageObject(libraryView);
-
-            libraryViewPageObject.expectToHaveNumberOfBooks(2);
+            libraryViewPageObject(libraryView).
+                expectToHaveNumberOfBooks(2);
         });
 
         it('shows the AddBookView', function() {
@@ -34,11 +33,10 @@ define(function(require) {
             });
             libraryView.render();
 
-            var libraryViewPageObject = new LibraryViewPageObject(libraryView);
-
-            libraryViewPageObject.clickAddBook(function(addBookViewPageObject) {
-                addBookViewPageObject.expectToBeVisible();
-            });
+            libraryViewPageObject(libraryView).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.expectToBeVisible();
+                });
         });
     });
 });

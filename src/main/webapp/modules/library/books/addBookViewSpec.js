@@ -5,7 +5,7 @@ define(function(require) {
     var Genres = require('modules/library/books/genres');
     var Book = require('modules/library/books/book');
 
-    var AddBookViewPageObject = require('modules/library/books/addBookViewPageObject');
+    var addBookViewPageObject = require('modules/library/books/addBookViewPageObject');
 
     describe('AddBookView', function() {
         it('hides the view when cancelling', function() {
@@ -22,9 +22,7 @@ define(function(require) {
             });
             view.render();
 
-            var addBookViewPageObject = new AddBookViewPageObject(view);
-
-            addBookViewPageObject.
+            addBookViewPageObject(view).
                 expectToBeVisible().
                 cancel().
                 expectToBeHidden();
@@ -44,9 +42,7 @@ define(function(require) {
             });
             view.render();
 
-            var addBookViewPageObject = new AddBookViewPageObject(view);
-
-            addBookViewPageObject.
+            addBookViewPageObject(view).
                 author("Miguel de Cervantes Saavedra").
                 title("Don Quixote").
                 genre("Picaresco").

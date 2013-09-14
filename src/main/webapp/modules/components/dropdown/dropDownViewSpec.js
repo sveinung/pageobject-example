@@ -1,7 +1,7 @@
 define(function(require) {
 
     var DropDownView = require('modules/components/dropdown/dropDownView');
-    var DropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
+    var dropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
 
     describe('DropDownView', function() {
         it('opens the dropdown', function() {
@@ -14,9 +14,8 @@ define(function(require) {
                 }]
             });
             view.render();
-            var dropDownViewPageObject = new DropDownViewPageObject(view.$el);
 
-            dropDownViewPageObject.
+            dropDownViewPageObject(view.$el).
                 expectToBeHidden().
                 openMenu().
                 expectToBeVisible();
@@ -32,9 +31,7 @@ define(function(require) {
                 }]
             });
             view.render();
-            var dropDownViewPageObject = new DropDownViewPageObject(view.$el);
-
-            dropDownViewPageObject.
+            dropDownViewPageObject(view.$el).
                 expectToHaveChosen("Choose!").
                 openMenu().
                 chooseOption("Satire").
