@@ -9,40 +9,20 @@ define(function(require) {
 
     describe('AddBookView', function() {
         it('hides the view when cancelling', function() {
-            var genres = new Genres([
-                {"name":"Crime novel"},
-                {"name":"Picaresco"}
-            ]);
+            var addBookView = createAddBookView();
+            addBookView.render();
 
-            var book = new Book();
-
-            var view = new AddBookView({
-                genres: genres,
-                book: book
-            });
-            view.render();
-
-            addBookViewPageObject(view).
+            addBookViewPageObject(addBookView).
                 expectToBeVisible().
                 cancel().
                 expectToBeHidden();
         });
 
         it('saves the book', function() {
-            var genres = new Genres([
-                {"name":"Crime novel"},
-                {"name":"Picaresco"}
-            ]);
+            var addBookView = createAddBookView({ genres: ["Picaresco"] });
+            addBookView.render();
 
-            var book = new Book();
-
-            var view = new AddBookView({
-                genres: genres,
-                book: book
-            });
-            view.render();
-
-            addBookViewPageObject(view).
+            addBookViewPageObject(addBookView).
                 author("Miguel de Cervantes Saavedra").
                 title("Don Quixote").
                 genre("Picaresco").
@@ -54,4 +34,20 @@ define(function(require) {
                 });
         });
     });
+
+    function createAddBookView(options) {
+        options = options || {};
+
+        var genres = [];
+        if (options.genres) {
+            genres = _.map(options.genres, function(genre) {
+                return { name: genre }
+            });
+        }
+
+        return new AddBookView({
+            genres: new Genres(genres),
+            book: new Book()
+        });
+    }
 });
