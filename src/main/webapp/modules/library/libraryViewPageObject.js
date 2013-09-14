@@ -7,7 +7,7 @@ define(function(require) {
 
     return function libraryViewPageObject(libraryView) {
         return {
-            clickAddBook: function(callback) {
+            clickAddBook: function(done) {
                 var server = sinon.fakeServer.create();
 
                 var genresResponse = [
@@ -21,7 +21,7 @@ define(function(require) {
                 server.respond();
                 server.restore();
 
-                callback(addBookViewPageObject(libraryView.addBookView));
+                done(addBookViewPageObject(libraryView.addBookView));
             },
             expectToHaveNumberOfBooks: function(numberOfBooksExpected) {
                 expect(libraryView.$(".books li").size()).toBe(numberOfBooksExpected);
