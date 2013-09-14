@@ -1,6 +1,7 @@
 define(function(require) {
 
     var po = require('modules/components/po');
+    var poAjax = require('modules/components/po-ajax');
     var sinon = require('sinon');
 
     var dropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
@@ -17,25 +18,14 @@ define(function(require) {
             return this;
         },
         save: function() {
-            var server = sinon.fakeServer.create();
-
-            this.submit();
-
-            var requestBody = server.queue[0].requestBody;
-
-            server.respond();
-            server.restore();
-
-            return {
-                expectToHaveSaved: function(attributes) {
-                    expect(JSON.parse(requestBody)).toEqual(attributes);
-                }
-            };
+            return this.mockRequest(function() {
+                this.submit();
+            }, this);
         },
         fillIn: function() {
             return this.author("George R.R. Martin").
                 title("A Game of Thrones").
                 genre("Epic fantasy");
         }
-    });
+    }, poAjax);
 });
