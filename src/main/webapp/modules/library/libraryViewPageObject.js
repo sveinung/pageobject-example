@@ -1,6 +1,5 @@
 define(function(require) {
 
-    var _ = require('underscore');
     var sinon = require('sinon');
 
     var addBookViewPageObject = require('modules/library/books/addBookViewPageObject');

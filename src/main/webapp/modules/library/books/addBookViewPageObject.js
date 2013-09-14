@@ -47,6 +47,12 @@ define(function(require) {
                     }
                 };
             },
+            createBook: function() {
+                return this.author("George R.R. Martin").
+                    title("A Game of Thrones").
+                    genre("Epic fantasy").
+                    save();
+            },
             cancel: function() {
                 addBookView.$(".cancel-button").click();
                 return this;

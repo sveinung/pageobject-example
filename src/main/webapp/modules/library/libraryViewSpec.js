@@ -1,7 +1,5 @@
 define(function(require) {
 
-    var $ = require('jquery');
-
     var LibraryView = require('modules/library/libraryView');
     var Library = require('modules/library/library');
 
@@ -45,11 +43,7 @@ define(function(require) {
 
             libraryViewPageObject(libraryView).
                 clickAddBook(function(addBookViewPageObject) {
-                    addBookViewPageObject.
-                        author("George R.R. Martin").
-                        title("A Game of Thrones").
-                        genre("Epic fantasy").
-                        save();
+                    addBookViewPageObject.createBook();
                 }).
                 expectToHaveNumberOfBooks(1);
         });
