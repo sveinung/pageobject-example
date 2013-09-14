@@ -15,6 +15,7 @@ define(function(require) {
         initialize: function(options) {
             this.defaultOption = options.defaultOption;
             this.options = (options.options || {});
+            this.selectedOption = null;
         },
 
         renderWith: function(options) {
@@ -44,7 +45,11 @@ define(function(require) {
 
             var option = this.$(event.currentTarget).attr("data-value");
             this.$(".dropdown-trigger .chosen-value").text(option);
-            this.trigger("selected", option);
+            this.selectedOption = option;
+        },
+
+        selected: function() {
+            return this.selectedOption;
         }
     });
 
