@@ -21,6 +21,7 @@ files = [
   { pattern: 'src/main/webapp/bower_components/require-css/css.js', included: false },
   { pattern: 'src/main/webapp/bower_components/require-css/normalize.js', included: false },
   { pattern: 'src/main/webapp/bower_components/backbone/backbone.js', included: false },
+  { pattern: 'src/main/webapp/bower_components/po.js/po.js', included: false },
   'src/main/webapp/test-main.js'
 ];
 

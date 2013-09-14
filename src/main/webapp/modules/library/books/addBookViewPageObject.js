@@ -1,7 +1,8 @@
 define(function(require) {
 
-    var po = require('modules/components/po');
+    var po = require('po');
     var poAjax = require('modules/components/po-ajax');
+    var poVisibility = require('modules/components/po-visibility');
     var sinon = require('sinon');
 
     var dropDownViewPageObject = require('modules/components/dropdown/dropDownViewPageObject');
@@ -27,5 +28,5 @@ define(function(require) {
                 title("A Game of Thrones").
                 genre("Epic fantasy");
         }
-    }, poAjax);
+    }, poVisibility, poAjax);
 });

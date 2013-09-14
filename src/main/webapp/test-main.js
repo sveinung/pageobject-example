@@ -17,9 +17,10 @@ requirejs.config({
         'backbone': 'bower_components/backbone/backbone',
         'base': 'modules/base',
 
-        'sinon': '/base/src/main/webapp/bower_components/sinonjs/sinon',
-        'jasmine-sinon': '/base/src/main/webapp/bower_components/jasmine-sinon/lib/jasmine-sinon',
-        'responseFaker': 'modules/components/responseFaker'
+        'sinon': 'bower_components/sinonjs/sinon',
+        'jasmine-sinon': 'bower_components/jasmine-sinon/lib/jasmine-sinon',
+        'responseFaker': 'modules/components/responseFaker',
+        'po': 'bower_components/po.js/po'
     },
     shim: {
         'jquery': {
