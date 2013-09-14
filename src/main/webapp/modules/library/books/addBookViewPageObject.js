@@ -10,6 +10,18 @@ define(function(require) {
         _.extend(this, options.attrs || {});
     };
 
+    _.extend(PageObject.prototype, {
+        expectToBeVisible: function() {
+            expect(this.$el).not.toBeEmpty();
+            expect(this.$el).not.toHaveClass('hide');
+            return this;
+        },
+        expectToBeHidden: function() {
+            expect(this.$el).toHaveClass('hide');
+            return this;
+        }
+    });
+
     var po = {
         create: function(attrs) {
             return function($el) {
@@ -64,15 +76,6 @@ define(function(require) {
             return this.author("George R.R. Martin").
                 title("A Game of Thrones").
                 genre("Epic fantasy");
-        },
-        expectToBeVisible: function() {
-            expect(this.$el).not.toBeEmpty();
-            expect(this.$el).not.toHaveClass('hide');
-            return this;
-        },
-        expectToBeHidden: function() {
-            expect(this.$el).toHaveClass('hide');
-            return this;
         }
     });
 });
