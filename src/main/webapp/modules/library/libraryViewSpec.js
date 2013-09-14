@@ -43,7 +43,7 @@ define(function(require) {
 
             libraryViewPageObject(libraryView.$el).
                 clickAddBook(function(addBookViewPageObject) {
-                    addBookViewPageObject.createBook();
+                    addBookViewPageObject.fillIn().save();
                 }).
                 expectToHaveNumberOfBooks(1);
         });

@@ -40,11 +40,10 @@ define(function(require) {
                     }
                 };
             },
-            createBook: function() {
+            fillIn: function() {
                 return this.author("George R.R. Martin").
                     title("A Game of Thrones").
-                    genre("Epic fantasy").
-                    save();
+                    genre("Epic fantasy");
             },
             cancel: function() {
                 $el.find(".cancel-button").click();
