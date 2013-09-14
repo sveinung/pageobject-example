@@ -22,9 +22,12 @@ define(function(require) {
                 server.restore();
 
                 done(addBookViewPageObject(libraryView.addBookView));
+
+                return this;
             },
             expectToHaveNumberOfBooks: function(expectedNumberOfBooks) {
                 expect(libraryView.$(".books li").size()).toBe(expectedNumberOfBooks);
+                return this;
             }
         };
     };

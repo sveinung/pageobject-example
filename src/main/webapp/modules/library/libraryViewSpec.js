@@ -30,6 +30,29 @@ define(function(require) {
                     addBookViewPageObject.expectToBeVisible();
                 });
         });
+
+        it('defaults to showing an empty book list', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
+
+            libraryViewPageObject(libraryView).
+                expectToHaveNumberOfBooks(0);
+        });
+
+        it('adds a book to the list', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
+
+            libraryViewPageObject(libraryView).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.
+                        author("George R.R. Martin").
+                        title("A Game of Thrones").
+                        genre("Epic fantasy").
+                        save();
+                }).
+                expectToHaveNumberOfBooks(1);
+        });
     });
 
     function createLibraryView(options) {
