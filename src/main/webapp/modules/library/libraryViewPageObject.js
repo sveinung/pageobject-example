@@ -7,6 +7,9 @@ define(function(require) {
     var addBookViewPageObject = require('modules/library/books/addBookViewPageObject');
 
     return po.create({
+        addBookView: function() {
+            return addBookViewPageObject(this.$el.find('.add-book-view'));
+        },
         clickAddBook: function(done) {
             var server = sinon.fakeServer.create();
 
@@ -21,7 +24,14 @@ define(function(require) {
             server.respond();
             server.restore();
 
-            done(addBookViewPageObject(this.$el.find('.add-book-view')));
+            done(this.addBookView());
+
+            return this;
+        },
+        openAddBook: function(done) {
+            this.$el.find(".add-book").click();
+
+            done(this.addBookView());
 
             return this;
         },

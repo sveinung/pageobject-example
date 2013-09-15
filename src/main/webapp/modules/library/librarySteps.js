@@ -73,5 +73,22 @@ module.exports = {
 
             done();
         });
+    },
+    'saves a book': function(done) {
+        loadPage(function($library) {
+            libraryViewPageObject($library).
+                openAddBook(function(addBookViewPageObject) {
+                    browser.wait(function(window) {
+                        return window.$(".library .add-book-view h4").length > 0;
+                    }, function() {
+                        addBookViewPageObject.
+                            author("Isaac Asimov").
+                            title("Foundation").
+                            genre("Science fiction").
+                            submit();
+                    });
+                }).
+                expectToHaveNumberOfBooks(5);
+        });
     }
 };

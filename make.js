@@ -35,7 +35,7 @@ target.acceptance = function() {
     var featurePath = 'src/main/webapp/modules/library/';
     bin('mocha', [
         '--debug',
-        '--timeout 10000',
+        '--timeout 20000',
         '--ui exports',
         featurePath + '*Steps.js'
     ]);
