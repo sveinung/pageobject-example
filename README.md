@@ -1,10 +1,12 @@
-pageobject-example
-==================
+Example app that uses Page Objects
+==================================
+
+[Read the blog post about Page Objects](https://github.com/sveinung/writings/blob/gh-pages/maintainable_backbone_tests.md)
 
 Setup
 -----
 
-Install Gradle and NPM.
+Install [Gradle](http://www.gradle.org/) and [Node.js](http://nodejs.org/).
 
 Run `npm install`.
 
@@ -12,5 +14,6 @@ Running and testing the app
 ---------------------------
 
 Run the app with `gradle run`.
+
 Run the JavaScript tests with `./make.js test` or `node make.js test`.
 
