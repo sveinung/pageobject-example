@@ -1,33 +1,28 @@
 define(function(require) {
 
-    var dropDownViewPageObject = function($view) {
-        return {
-            openMenu: function() {
-                $view.find(".dropdown-trigger").click();
-                return this;
-            },
+    var po = require('po');
 
-            chooseOption: function(option) {
-                $view.find(".dropdown-menu a[data-value='" + option + "']").click();
-                return this;
-            },
+    return po.create({
+        openMenu: po.button(".dropdown-trigger"),
 
-            expectToHaveChosen: function(option) {
-                expect($view.find(".dropdown-trigger .chosen-value")).toHaveText(option);
-                return this;
-            },
+        chooseOption: function(option) {
+            this.$(".dropdown-menu a[data-value='" + option + "']").click();
+            return this;
+        },
 
-            expectToBeHidden: function() {
-                expect($view.find(".dropdown-menu")).toHaveClass("hide");
-                return this;
-            },
+        expectToHaveChosen: function(option) {
+            expect(this.$(".dropdown-trigger .chosen-value")).toHaveText(option);
+            return this;
+        },
 
-            expectToBeVisible: function() {
-                expect($view.find(".dropdown-menu")).not.toHaveClass("hide");
-                return this;
-            }
-        };
-    };
+        expectToBeHidden: function() {
+            expect(this.$(".dropdown-menu")).toHaveClass("hide");
+            return this;
+        },
 
-    return dropDownViewPageObject;
+        expectToBeVisible: function() {
+            expect(this.$(".dropdown-menu")).not.toHaveClass("hide");
+            return this;
+        }
+    });
 });
