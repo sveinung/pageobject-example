@@ -30,6 +30,17 @@ target.browser = function() {
     bin('karma', ['start', 'karma.conf.js']);
 };
 
+target.acceptance = function() {
+    section('Running acceptance tests');
+    var featurePath = 'src/main/webapp/modules/library/';
+    bin('mocha', [
+        '--debug',
+        '--timeout 20000',
+        '--ui exports',
+        featurePath + '*Steps.js'
+    ]);
+};
+
 target.build = function() {
     var rjsConfig = path.join(config, 'buildconfig.js');
     bin('r.js', ['-o ' + rjsConfig, 'out=' + jsFile]);

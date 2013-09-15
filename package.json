@@ -20,5 +20,11 @@
     "underscore": "~1.4.4",
     "karma": "~0.8.6",
     "npm-bin": "~0.1.0"
+  },
+  "devDependencies": {
+    "expectations": "~0.2.0",
+    "mocha": "~1.12.1",
+    "zombie": "~2.0.0-alpha21",
+    "requirejs": "~2.1.8"
   }
 }
