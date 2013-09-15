@@ -16,7 +16,7 @@
     "normalize-css": "~2.1.2",
     "underscore": "~1.4.4",
     "backbone": "~1.0.0",
-    "po.js": "~0.0.1"
+    "po.js": "~0.0.2"
   },
   "devDependencies": {
     "sinon": "~1.7.3",
