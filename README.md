@@ -20,4 +20,4 @@ Run the JavaScript tests with `./make.js test` or `node make.js test`.
 Page object examples
 --------------------
 
-[libraryViewPageObject](https://github.com/sveinung/pageobject-example/blob/master/src/main/webapp/modules/library/libraryViewPageObject.js)
+[libraryViewSpec](https://github.com/sveinung/pageobject-example/blob/master/src/main/webapp/modules/library/libraryViewSpec.js) using [libraryViewPageObject](https://github.com/sveinung/pageobject-example/blob/master/src/main/webapp/modules/library/libraryViewPageObject.js)
