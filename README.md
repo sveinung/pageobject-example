@@ -21,3 +21,5 @@ Page object examples
 --------------------
 
 [libraryViewSpec](https://github.com/sveinung/pageobject-example/blob/master/src/main/webapp/modules/library/libraryViewSpec.js) using [libraryViewPageObject](https://github.com/sveinung/pageobject-example/blob/master/src/main/webapp/modules/library/libraryViewPageObject.js)
+
+[addBookViewSpec](https://github.com/sveinung/pageobject-example/blob/master/src/main/webapp/modules/library/books/addBookViewSpec.js) using [addBookViewPageObject](https://github.com/sveinung/pageobject-example/blob/master/src/main/webapp/modules/library/books/addBookViewPageObject.js)
